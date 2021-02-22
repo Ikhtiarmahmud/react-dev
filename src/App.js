@@ -1,5 +1,5 @@
 import './App.css';
-import MyComponent from './Component/MyComponent';
+import {Contact, Home} from './Component/MyComponent';
 import { useState } from 'react';
 
 function App() {
@@ -21,13 +21,12 @@ function App() {
     setCliked(param);
   }
 
-  let information = clicked === 'contact' ?  contactInfo : personalInfo;
-
   return (
     <>
       <button onClick={()=>menuClicked('home')}>Home</button>
       <button onClick={()=>menuClicked('contact')}>Contact</button>
-      <MyComponent info={information}/>
+      {clicked === 'home' && <Home info={personalInfo}/>}
+      {clicked === 'contact' && <Contact info={contactInfo}/>}
     </>
   );
 }
