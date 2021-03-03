@@ -1,9 +1,13 @@
 import React,{useState, useEffect} from 'react';
+import { useParams } from 'react-router-dom'
 import './loader.css';
 
 
-const ProductDetails = (props) => {
-    const [loader, setLoader] = useState(true);
+const ProductDetails = ({productList}) => {
+    const [loader, setLoader] = useState(true)
+    const params = useParams()
+
+    const details = productList[params.id]
 
     useEffect(() => {
          setTimeout(() => {
@@ -24,10 +28,10 @@ const ProductDetails = (props) => {
     } else {
         return (
             <>
-                <p><b>Name</b> : {props.details.name}</p>
-                <p><b>Description</b> : {props.details.description}</p>
-                <p><b>Price</b> : {props.details.price}</p>
-                <p><b>Category</b> : {props.details.category}</p>
+                <p><b>Name</b> : {details.name}</p>
+                <p><b>Description</b> : {details.description}</p>
+                <p><b>Price</b> : {details.price}</p>
+                <p><b>Category</b> : {details.category}</p>
             </>
         )
     }
