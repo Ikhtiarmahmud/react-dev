@@ -6,7 +6,7 @@ const About = () => {
     return (
         <>
           <h1>HI! I am Mitul</h1>
-          <p>Recently, I am learning React Js for become frontend developer.</p>
+          <p>Recently, I am learning React Js for becoming a frontend developer.</p>
         </>
     )
 }

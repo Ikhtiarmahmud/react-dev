@@ -6,21 +6,24 @@ const Navigation = () => {
 
     return (
         <>
-            <ul>
-                <li>
+            <ul >
+                <li style={disInline}>
                     <Link to='/'>Home</Link>
                 </li>
-                <br/>
-                <li>
+                <li style={disInline}>
                     <Link to='/about'>About</Link>
                 </li>
-                <br/>
-                <li>
+                <li style={disInline}>
                     <Link to='/product'>Product</Link>
                 </li>
             </ul>
         </>
     )
+}
+
+const disInline = {
+    display : 'inline-block',
+    marginRight : '5px'
 }
 
 export default Navigation;

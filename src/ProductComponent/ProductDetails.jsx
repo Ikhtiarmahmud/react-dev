@@ -1,41 +1,54 @@
 import React,{useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom'
-import './loader.css';
+import axios from 'axios';
+import Loader from './../LoaderComponent/LoaderComponent';
 
 
 const ProductDetails = ({productList}) => {
-    const [loader, setLoader] = useState(true)
-    const params = useParams()
-
-    const details = productList[params.id]
+    const [loader, setLoader] = useState(true);
+    const [product, setProduct] = useState({});
+    const params = useParams();
 
     useEffect(() => {
-         setTimeout(() => {
-            setLoader(false)
-         }, 500)
-    },[])
+        axios.get(`https://fakestoreapi.com/products/${params.id}`)
+             .then(res => {
+                setProduct(res.data);
+                console.log(res.data);
+                setLoader(false);
+             }).catch(err => {
+                 console.log(err.response);
+             })
+    }, []);
 
     if (loader) {
-        return (
-            <>
-                <div className="spinner-box">
-                <div className="circle-border">
-                    <div className="circle-core"></div>
-                </div>  
-                </div>
-            </>
-        )
+        return <Loader />
     } else {
         return (
             <>
-                <p><b>Name</b> : {details.name}</p>
-                <p><b>Description</b> : {details.description}</p>
-                <p><b>Price</b> : {details.price}</p>
-                <p><b>Category</b> : {details.category}</p>
+              {
+                product ?
+                <div style={card}>
+                    <img src={product.image} style={imgStyle}/>
+                    <p><b>Name</b> : {product.title}</p>
+                    <p><b>Description</b> : {product.description}</p>
+                    <p><b>Price</b> : {product.price}</p>
+                    <p><b>Category</b> : {product.category}</p>
+                    <button>Buy Now</button>
+                </div> : <h1>404! Not Found!</h1>
+              }
             </>
         )
     }
-  
+}
+
+const card = {
+    padding: '30px',
+    margin: '100px',
+}
+
+const imgStyle = {
+    width: '200px',
+    height: '200px'
 }
 
 export default ProductDetails
