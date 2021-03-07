@@ -16,6 +16,9 @@ const Navigation = () => {
                 <li style={disInline}>
                     <Link to='/product'>Product</Link>
                 </li>
+                <li style={disInline}>
+                    <Link to='/create-product'>Create Product</Link>
+                </li>
             </ul>
         </>
     )

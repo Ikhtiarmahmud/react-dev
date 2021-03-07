@@ -1,5 +1,5 @@
 import React,{useState, useEffect} from 'react';
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import axios from 'axios';
 import Loader from './../LoaderComponent/LoaderComponent';
 
@@ -8,6 +8,7 @@ const ProductDetails = ({productList}) => {
     const [loader, setLoader] = useState(true);
     const [product, setProduct] = useState({});
     const params = useParams();
+    const history = useHistory();
 
     useEffect(() => {
         axios.get(`https://fakestoreapi.com/products/${params.id}`)
@@ -19,6 +20,10 @@ const ProductDetails = ({productList}) => {
                  console.log(err.response);
              })
     }, []);
+
+    const EditProduct = (id) => {
+        history.push(`/edit-product/${id}`);
+    }
 
     if (loader) {
         return <Loader />
@@ -33,7 +38,7 @@ const ProductDetails = ({productList}) => {
                     <p><b>Description</b> : {product.description}</p>
                     <p><b>Price</b> : {product.price}</p>
                     <p><b>Category</b> : {product.category}</p>
-                    <button>Buy Now</button>
+                    <button onClick={() => EditProduct(product.id)}>Edit Product</button>
                 </div> : <h1>404! Not Found!</h1>
               }
             </>
