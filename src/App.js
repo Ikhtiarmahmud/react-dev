@@ -4,6 +4,7 @@ import Navigation from './NavigationComponent/Navigation';
 import ProductDetails from './ProductComponent/ProductDetails';
 import ProductCreate from './ProductComponent/CreateProduct';
 import ProductEdit from './ProductComponent/EditProduct';
+import Cart from './CartComponent/Cart';
 import About from './AboutComponent/About';
 import { BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 
@@ -34,6 +35,10 @@ function App() {
 
           <Route exact path="/edit-product/:id">
                 <ProductEdit />
+          </Route>
+
+          <Route exact path="/cart">
+                <Cart />
           </Route>
 
           <Route exact path="/404">

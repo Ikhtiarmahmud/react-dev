@@ -11,6 +11,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import { useSelector, useDispatch } from 'react-redux';
 
 
 const Product = () => {
@@ -50,13 +51,22 @@ const Product = () => {
     const getProduct = (id) => {
         history.push(`/product-details/${id}`);
     }
+
+    const store = useSelector((state) => state.cartStore);
+
+    const dispatch = useDispatch();
+
+    const addToCart = () => {
+      dispatch({
+        type: 'ADD_TO_CART',
+        payload: store.cart ? store.cart + 1 : 1
+      })
+    }
     
    
     if (loader) {
         return (
-            <Grid container direction="row" justify="space-center" alignItems="center">
-                 <Loader />
-            </Grid>
+            <Loader />
         )
     } else {
         return (
@@ -88,9 +98,14 @@ const Product = () => {
                           </CardContent>
                         </CardActionArea>
                         <CardActions>
+                        <Grid container direction="row" justify="space-between" alignItems="center">
                           <Button size="small" color="primary"  onClick={() => getProduct(product.id)}>
                             Details
                           </Button>
+                          <Button size="small" color="danger" onClick={addToCart}>
+                            Add Cart
+                          </Button>
+                          </Grid>
                         </CardActions>
                       </Card>
                     )

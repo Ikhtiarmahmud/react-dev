@@ -8,34 +8,32 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { Link} from 'react-router-dom';
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-      flexGrow: 1,
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
-    },
-    title: {
-      flexGrow: 1,
-    },
-    menuItem : {
-      textDecoration: 'none',
-      color: '#fff'
-    }
-  }));
-
+import { useSelector } from 'react-redux';
 
 const Navigation = () => {
+    const useStyles = makeStyles((theme) => ({
+      root: {
+        flexGrow: 1,
+      },
+      menuButton: {
+        marginRight: theme.spacing(2),
+      },
+      title: {
+        flexGrow: 1,
+      },
+      menuItem : {
+        textDecoration: 'none',
+        color: '#fff'
+      }
+    }));
 
     const classes = useStyles();
+
+    const totalCart = useSelector((state) => state.cartStore.cart);
 
     return (
         <AppBar position="static">
             <Toolbar>
-            {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                <MenuIcon />
-            </IconButton> */}
             <Typography variant="h6" className={classes.title}>
                 <Link className={classes.menuItem} to='/'>AliNana</Link>
             </Typography>
@@ -43,6 +41,7 @@ const Navigation = () => {
             <MenuItem> <Link className={classes.menuItem} to='/about'>About</Link></MenuItem>
             <MenuItem><Link  className={classes.menuItem} to='/product'>Product</Link></MenuItem>
             <MenuItem><Link className={classes.menuItem} to='/create-product'>Create-Product</Link></MenuItem>
+            <MenuItem><Link className={classes.menuItem} to='/cart'>Cart {totalCart ? `(${totalCart})`: ''}</Link></MenuItem>
             </Toolbar>
         </AppBar>
     )
