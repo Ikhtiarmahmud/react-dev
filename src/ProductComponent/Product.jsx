@@ -56,14 +56,21 @@ const Product = () => {
 
     const dispatch = useDispatch();
 
-    const addToCart = () => {
-      dispatch({
-        type: 'ADD_TO_CART',
-        payload: store.cart ? store.cart + 1 : 1
-      })
-    }
-    
-   
+    const addToCart = (id) => {
+      axios.get(`https://fakestoreapi.com/products/${id}`)
+      .then(res => {
+        dispatch({
+          type: 'ADD_TO_CART',
+          payload: {
+            cart: store.cart ? store.cart + 1 : 1,
+            cartProduct: store.cartProduct ? store.cartProduct.push(res.data) : [res.data]
+          }
+        })
+      }).catch(err => {
+          console.log(err.response);
+      });
+    }    
+
     if (loader) {
         return (
             <Loader />
@@ -102,7 +109,7 @@ const Product = () => {
                           <Button size="small" color="primary"  onClick={() => getProduct(product.id)}>
                             Details
                           </Button>
-                          <Button size="small" color="danger" onClick={addToCart}>
+                          <Button size="small" color="danger" onClick={() => addToCart(product.id)}>
                             Add Cart
                           </Button>
                           </Grid>

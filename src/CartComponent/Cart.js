@@ -5,7 +5,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
 const Cart = () => {
-        const totalCart = useSelector((state) => state.cartStore.cart);
+        const totalCart = useSelector((state) => state.cartStore);
+        console.log(totalCart);
         const dispatch = useDispatch();
 
         const useStyles = makeStyles({
@@ -17,7 +18,7 @@ const Cart = () => {
                 marginTop: '15px',
                 border : '1px solid black'
 
-            }
+            },
           });
     
         const classes = useStyles();
@@ -33,7 +34,7 @@ const Cart = () => {
             <>
                 <div className={classes.root}>
                     <Typography variant="body2" color="textSecondary" component="p">
-                            Total Product : {totalCart ? totalCart : 'No Product Available'}
+                            Total Product : {totalCart.cart ? totalCart.cart : 'No Product Available'}
                     </Typography>
                     <Button className={classes.button} size="small" color="primary" onClick={clearCart}>Clear Cart</Button>
                 </div>
