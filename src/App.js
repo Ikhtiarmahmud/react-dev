@@ -1,11 +1,10 @@
-// import './App.css';
-// import Product from './ProductComponent/Product';
+import './App.css';
+import Product from './ProductComponent/Product';
 import Navigation from './NavigationComponent/Navigation';
-// import ProductDetails from './ProductComponent/ProductDetails';
-// import ProductCreate from './ProductComponent/CreateProduct';
-// import ProductEdit from './ProductComponent/EditProduct';
-// import About from './AboutComponent/About';
-// import { useState } from 'react';
+import ProductDetails from './ProductComponent/ProductDetails';
+import ProductCreate from './ProductComponent/CreateProduct';
+import ProductEdit from './ProductComponent/EditProduct';
+import About from './AboutComponent/About';
 import { BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 
 function App() {
@@ -17,7 +16,7 @@ function App() {
                 <h2>Welcome! This is home page.</h2>
           </Route>
 
-          {/* <Route exact path="/product">
+          <Route exact path="/product">
                 <Product />
           </Route>
 
@@ -35,7 +34,7 @@ function App() {
 
           <Route exact path="/edit-product/:id">
                 <ProductEdit />
-          </Route> */}
+          </Route>
 
           <Route exact path="/404">
               <h1>404! Not Found</h1>

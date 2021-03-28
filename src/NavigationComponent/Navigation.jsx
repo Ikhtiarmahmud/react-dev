@@ -6,8 +6,8 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import Link from '@material-ui/core/Link';
-// import { Link} from 'react-router-dom';
+import MenuItem from '@material-ui/core/MenuItem';
+import { Link} from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -19,51 +19,33 @@ const useStyles = makeStyles((theme) => ({
     title: {
       flexGrow: 1,
     },
+    menuItem : {
+      textDecoration: 'none',
+      color: '#fff'
+    }
   }));
 
 
 const Navigation = () => {
 
     const classes = useStyles();
-    const preventDefault = (event) => event.preventDefault();
 
     return (
         <AppBar position="static">
             <Toolbar>
-            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+            {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                 <MenuIcon />
-            </IconButton>
+            </IconButton> */}
             <Typography variant="h6" className={classes.title}>
-                news
+                <Link className={classes.menuItem} to='/'>AliNana</Link>
             </Typography>
-            <Link href="#" onClick={preventDefault}>
-                Link
-            </Link>
-            <Button color="inherit">Login</Button>
+            <MenuItem><Link className={classes.menuItem} to='/'>Home</Link></MenuItem>
+            <MenuItem> <Link className={classes.menuItem} to='/about'>About</Link></MenuItem>
+            <MenuItem><Link  className={classes.menuItem} to='/product'>Product</Link></MenuItem>
+            <MenuItem><Link className={classes.menuItem} to='/create-product'>Create-Product</Link></MenuItem>
             </Toolbar>
         </AppBar>
-        // <>
-            // <ul >
-            //     <li style={disInline}>
-            //         <Link to='/'>Home</Link>
-            //     </li>
-            //     <li style={disInline}>
-            //         <Link to='/about'>About</Link>
-            //     </li>
-            //     <li style={disInline}>
-            //         <Link to='/product'>Product</Link>
-            //     </li>
-            //     <li style={disInline}>
-            //         <Link to='/create-product'>Create Product</Link>
-            //     </li>
-            // </ul>
-        // </>
     )
 }
-
-// const disInline = {
-//     display : 'inline-block',
-//     marginRight : '5px'
-// }
 
 export default Navigation;
