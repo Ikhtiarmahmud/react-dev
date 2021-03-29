@@ -28,7 +28,7 @@ const Product = () => {
         category: {
             display: 'flex',
             justifyContent: 'end',
-        }
+        },
       });
 
     const classes = useStyles();
@@ -63,7 +63,7 @@ const Product = () => {
           type: 'ADD_TO_CART',
           payload: {
             cart: store.cart ? store.cart + 1 : 1,
-            cartProduct: store.cartProduct ? store.cartProduct.push(res.data) : [res.data]
+            product: store.product ? [res.data, ...store.product] : [res.data],
           }
         })
       }).catch(err => {
