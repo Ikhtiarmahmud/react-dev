@@ -10,10 +10,10 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
+import { Link} from 'react-router-dom';
 
 const Cart = () => {
         const totalCart = useSelector((state) => state.cartStore);
-        console.log(totalCart);
         const dispatch = useDispatch();
 
         const useStyles = makeStyles({
@@ -23,13 +23,18 @@ const Cart = () => {
             },
             button : {
                 marginTop: '15px',
-                border : '1px solid black'
+                border : '1px solid black',
+                color: 'black'
 
             },
             image: {
                 width: '50px',
                 height: '50px',
-              }
+              },
+            menuItem : {
+                textDecoration: 'none',
+                color: 'black'
+            }
           });
     
         const classes = useStyles();
@@ -42,6 +47,14 @@ const Cart = () => {
                     product: []
                 },
             })
+        }
+
+        let btn;
+        if (typeof totalCart.cart == 'undefined' || totalCart.cart == 0) {
+            btn = <Link className={classes.menuItem
+                        } to="/product"><Button className={classes.button} size="small" color="primary">Purchase Now</Button></Link>
+        } else {
+            btn = <Button className={classes.button} size="small" color="primary" onClick={clearCart}>Clear Cart</Button>
         }
 
         return (
@@ -75,7 +88,7 @@ const Cart = () => {
                         </Table>
                         </TableContainer>
                     }
-                    <Button className={classes.button} size="small" color="primary" onClick={clearCart}>Clear Cart</Button>
+                    {btn}
                 </div>
             </>
         )
